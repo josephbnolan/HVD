@@ -1,0 +1,30 @@
+html{
+    height: 100%;
+    width: 100%;
+  }
+
+body{
+    background: linear-gradient(#ff7bd2, #ce4444);
+}
+
+#stage {
+    position: absolute;
+    top: 0;
+}
+
+.mainApp {
+    position: relative;
+}
+
+.jumbotron {
+    background: #65015c;
+    color: #ffffff;
+    display: flex;
+    margin: 25% auto;
+    width: 80%;
+}
+
+.jumbotron .container {
+    padding: 100px;
+}
+
