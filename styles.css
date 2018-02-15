@@ -1,10 +1,12 @@
-html{
-    height: 100%;
-    width: 100%;
-  }
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-body{
-    background: linear-gradient(#ff7bd2, #ce4444);
+html, html body {
+    background-color: #f2f9ff;
+    font-family: 'Roboto', sans-serif;
+}
+
+body, canvas {
+    z-index: -1;
 }
 
 #stage {
@@ -12,18 +14,125 @@ body{
     top: 0;
 }
 
-.mainApp {
-    position: relative;
-}
-
 .jumbotron {
     background: #65015c;
+    box-shadow: 20px 21px 184px 1px rgba(101,1,92,1);
+    -webkit-box-shadow: 20px 21px 184px 1px rgba(101,1,92,1);
+    -moz-box-shadow: 20px 21px 184px 1px rgba(101,1,92,1);
     color: #ffffff;
-    display: flex;
-    margin: 25% auto;
+    margin: 15% auto;
+    padding: 15px;
     width: 80%;
 }
 
-.jumbotron .container {
-    padding: 100px;
+.mainApp {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    line-height: 4em;
+    min-height: 500px;
+    max-height: 100%;
+
 }
+
+.step {
+    text-align: center;
+    transition: all 500ms ease-out 1s;
+}
+
+ol.progtrckr {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ol.progtrckr li {
+    display: inline-block;
+    text-align: center;
+    line-height: 4.2rem;
+    cursor: pointer;
+  }
+  
+  ol.progtrckr li span {
+    padding: 0 1.5rem;
+  }
+  
+  @media (max-width: 650px) {
+    .progtrckr li span {
+      display: none;
+    }
+  }
+  .progtrckr em {
+    display: none;
+    font-weight: 700;
+    padding-left: 1rem;
+  }
+  
+  @media (max-width: 650px) {
+    .progtrckr em {
+      display: inline;
+    }
+  }
+  
+  ol.progtrckr li.progtrckr-todo {
+    color: silver;
+    border-bottom: 4px solid silver;
+  }
+  
+  ol.progtrckr li.progtrckr-doing {
+    color: #ffffff;
+    border-bottom: 4px solid #ce4444;
+  }
+  
+  ol.progtrckr li.progtrckr-done {
+    color: #ffffff;
+    border-bottom: 4px solid #ff7bd2;
+  }
+  
+  ol.progtrckr li:after {
+    content: "\00a0\00a0";
+  }
+  
+  ol.progtrckr li:before {
+    position: relative;
+    bottom: -3.7rem;
+    float: left;
+    left: 50%;
+  }
+  
+  ol.progtrckr li.progtrckr-todo:before {
+    content: "\039F";
+    color: #ffffff;
+    background-color: #65015c;
+    width: 1.2em;
+    line-height: 1.4em;
+  }
+  
+  ol.progtrckr li.progtrckr-todo:hover:before {
+    color: #ff4500;
+  }
+  
+  ol.progtrckr li.progtrckr-doing:before {
+    content: "\2022";
+    color: white;
+    background-color: #ce4444;
+    width: 1.2em;
+    line-height: 1.2em;
+    border-radius: 1.2em;
+  }
+  
+  ol.progtrckr li.progtrckr-doing:hover:before {
+    color: #ff4500;
+  }
+  
+  ol.progtrckr li.progtrckr-done:before {
+    content: "\2713";
+    color: white;
+    background-color: #ff7bd2;
+    width: 1.2em;
+    line-height: 1.2em;
+    border-radius: 1.2em;
+  }
+  
+  ol.progtrckr li.progtrckr-done:hover:before {
+    color: #ff7bd2;
+  }

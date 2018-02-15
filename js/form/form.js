@@ -1,110 +1,96 @@
-import React, { Component }                                         from 'react';
-import {
-    Jumbotron,
-    Button,
-    FormGroup,
-    Label,
-    Input,
-    Form,
-    Carousel,
-    CarouselItem,
-    CarouselControl,
-    CarouselIndicators,
-    CarouselCaption
-}                                                                   from 'reactstrap';
-import { Link }                                                     from 'react-router-dom';
+import React, { Component } from 'react';
+import { Jumbotron, Container } from 'reactstrap';
+import StepZilla from 'react-stepzilla';
+import { Link } from 'react-router-dom';
 
-const items = [
-    {
-      id: 1,
-      altText: 'Question 1',
-      caption: 'Will you be my Valentine?'
-    },
-    {
-      id: 2,
-      altText: 'Question 2',
-      caption: 'Sushi or Thai?'
-    },
-    {
-      id: 3,
-      altText: 'Question 3',
-      caption: 'Flowers or Chocolate?'
-    }
-  ];
+import Landing from './components/landing'
+import WYBMV from './components/WYBMV';
+import SushiOrThai from './components/SushiOrThai';
+import ChocOrFlow from './components/ChocOrFlow';
+import FinalAnswers from './components/FinalAnswers';
+import Exit from './components/Exit';
+
 
 export default class Questionaire extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            activeIndex: 0
+        this.state = {};
+
+        this.sampleStore = {
+            wybmv: '',
+            SorT: '',
+            CorF: '',
+            final: false
         };
-        this.next = this.next.bind(this);
-        this.previous = this.previous.bind(this);
-        this.goToIndex = this.goToIndex.bind(this);
-        this.onExiting = this.onExiting.bind(this);
-        this.onExited = this.onExited.bind(this);
     }
 
-    onExiting() {
-        this.animating = true;
+    componentDidMount() {}
+
+    componentWillUnmount() {}
+
+    getStore() {
+        return this.sampleStore;
     }
 
-    onExited() {
-        this.animating = false;
-    }
-
-    next() {
-        if (this.animating) return;
-        const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
-        this.setState({
-            activeIndex: nextIndex
-        });
-    }
-
-    previous() {
-        if (this.animating) return;
-        const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1;
-        this.setState({
-            activeIndex: nextIndex
-        });
-    }
-
-    goToIndex(newIndex) {
-        if (this.animating) return;
-        this.setState({
-            activeIndex: newIndex
-        });
-    }
+    updateStore(update) {
+        this.sampleStore = {
+          ...this.sampleStore,
+          ...update,
+        }
+      }
 
     render() {
-        const { activeIndex } = this.state;
 
-        const slides = items.map((item) => {
-            return (
-              <CarouselItem
-                onExiting={this.onExiting}
-                onExited={this.onExited}
-                key={item.id}
-              >
-                <CarouselCaption captionText={item.altText} captionHeader={item.caption} />
-              </CarouselItem>
-            );
-        });
+        const steps = [
+            {
+                name: 'Happy V Day!',
+                component: <Landing getStore={ () => this.getStore() } updateStore={ (u) => this.updateStore(u) } />
+            },
+            {
+                name: 'WYBMV?',
+                component: <WYBMV getStore={ () => (this.getStore()) } updateStore={ (u) => this.updateStore(u) } />
+            },
+            {
+                name: 'Sushi Or Thai?',
+                component: <SushiOrThai getStore={ () => (this.getStore()) } updateStore={ (u) => {
+                                                                    this.updateStore(u)
+                                                                } } />
+            },
+            {
+                name: 'Chocolate Or Flowers?',
+                component: <ChocOrFlow getStore={ () => (this.getStore()) } updateStore={ (u) => {
+                                                                   this.updateStore(u)
+                                                               } } />
+            },
+            {
+                name: 'Final Answer',
+                component: <FinalAnswers getStore={ () => (this.getStore()) } updateStore={ (u) => {
+                                                                     this.updateStore(u)
+                                                                 } } />
+            },
+            {
+                name: 'Exit',
+                component: <Exit getStore={ () => (this.getStore()) } updateStore={ (u) => {
+                                                             this.updateStore(u)
+                                                         } } />
+            }
+        ]
+
         return (
-            <Jumbotron>
-                    <Carousel
-                        activeIndex={activeIndex}
-                        next={this.next}
-                        previous={this.previous}
-                        autoPlay={false}
-                        interval={false}
-                    >
-                        {slides}
-                        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
-                        <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
-                    </Carousel>
-                    {/*  */}
-            </Jumbotron>
-        );
+            <div className='step-progress text-center'>
+                  <StepZilla 
+                            steps={ steps } 
+                            preventEnterSubmission={ true } 
+                            prevBtnOnLastStep={ false } 
+                            showSteps={true}
+                            nextButtonCls='btn btn-outline-danger btn-lg pull-right'
+                            backButtonCls='btn btn-outline-danger btn-lg pull-left' 
+                            nextTextOnFinalActionStep="Send" 
+                            startAtStep={ window.sessionStorage.getItem('step') ? parseFloat(window.sessionStorage.getItem('step')) : 0 } 
+                            onStepChange={ (step) => window.sessionStorage.setItem('step', step) }
+                  />
+            </div>
+            );
     }
 }
+

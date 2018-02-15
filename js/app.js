@@ -1,19 +1,16 @@
-import React, { Component }                     from 'react'
-import ReactDOM                                 from 'react-dom';
-import { BrowserRouter, Route, Switch }         from 'react-router-dom';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom';
 
-import Landing    from "./landing/landing";
-import Questionaire       from "./form/form";
+import Questionaire from './form/form'
+import Animation from "./animation";
 
-import Animation  from "./animation";
+export default class App extends Component {
+  render() {
+    return (
+      <Questionaire />
+    )
+  }
+}
 
-ReactDOM.render(
-  <BrowserRouter>
-  <div>
-    <Switch>
-      <Route path="/form" component={ Questionaire } />
-      <Route path="/" component={ Landing } />
-    </Switch>
-  </div>
-</BrowserRouter>
-  , document.querySelector( '.mainApp' ) );
+ReactDOM.render(<App />
+  , document.querySelector('.mainApp'));
