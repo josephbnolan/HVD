@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 html,
 html body {
-    background-color: #f2f9ff;
+    height: 100vh;
+    width: 100vw;
+    background-color: ghostwhite;
     font-family: 'Roboto', sans-serif;
 }
 
-body,
 canvas {
-    z-index: -1;
+    top: 0; bottom: 0; left: 0; right: 0;
+    z-index: 1;
 }
 
 a,
@@ -23,7 +25,11 @@ a:active {
     position: absolute;
     top: 0;
 }
-
+.center-it {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .landing-cards {
     align-items: center;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.16);
@@ -45,7 +51,7 @@ a:active {
     text-align: center;
 
     color: #d7d7d7;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 1000;
 }
 
@@ -54,21 +60,37 @@ a:active {
     justify-content: center;
 
     color: powderblue;
-    font-size: 24px;
+    font-size: 36px;
     font-weight: 1000;
 
     background-color: #fff;
 }
 
+.home-button {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 5; left: 5;
+    height: 3.5em;
+    width: 3.5em;
+    border-radius: 50%;
+    color: black;
+    border: 1px solid black;
+    font-size: 12px;
+    z-index: 3;
+}
+
 .jumbotron {
+    position: absolute;
     background: #65015c;
     box-shadow: 20px 21px 184px 1px rgba(101, 1, 92, 1);
     -webkit-box-shadow: 20px 21px 184px 1px rgba(101, 1, 92, 1);
     -moz-box-shadow: 20px 21px 184px 1px rgba(101, 1, 92, 1);
-    color: #ffffff;
-    margin: 15% auto;
     padding: 15px;
     width: 80%;
+    top: 25%; left: 10%;
+    z-index: 2;
 }
 
 .mainApp {
@@ -181,4 +203,69 @@ ol.progtrckr li.progtrckr-done:before {
 
 ol.progtrckr li.progtrckr-done:hover:before {
     color: #ff7bd2;
+}
+
+.pennies__container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+}
+
+.pennies__header {
+    line-height: 3;
+    margin-bottom: 3em;
+    text-align: center;
+
+    color: mediumpurple;
+    font-size: 24px;
+}
+
+.thoughts__container {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+}
+
+.thoughts__current {
+    display: inline;
+    margin: auto;
+    width: 50%;
+
+
+    color: #fff;
+    line-height: 2em;
+    font-size: 24px;
+    text-align: center;
+}
+
+.thoughts__current span {
+    padding: 0.2em;
+    box-shadow: 0.2em 0 0 rgba(cadetblue, 0.7), -0.2em 0 0 rgba(cadetblue, 0.7);
+    background-color: cadetblue;
+    opacity: 0.7;
+}
+
+.thoughts__list {
+    align-items: center;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.16);
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    line-height: 2;
+    overflow: auto;
+    width: 200px;
+
+    color: #d7d7d7;
+    font-weight: 300;
+
+    background-color: #fff;
+}
+
+.thoughts__list--selected {
+    text-align: center;
+    color: #fff;
+    background-color: cadetblue;
+    opacity: 0.7;
+    width: 100%;
 }

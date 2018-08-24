@@ -76,18 +76,21 @@ export default class Questionnaire extends Component {
         ]
 
         return (
-            <div className='step-progress text-center jumbotron'>
-                <StepZilla 
-                            steps={ steps } 
-                            preventEnterSubmission={ true } 
-                            prevBtnOnLastStep={ false } 
-                            showSteps={true}
-                            nextButtonCls='btn btn-outline-danger btn-lg pull-right'
-                            backButtonCls='btn btn-outline-danger btn-lg pull-left' 
-                            nextTextOnFinalActionStep="Send" 
-                            startAtStep={ window.sessionStorage.getItem('step') ? parseFloat(window.sessionStorage.getItem('step')) : 0 } 
-                            onStepChange={ (step) => window.sessionStorage.setItem('step', step) }
-                />
+            <div>
+                <canvas id="stage"></canvas>
+                <div className='step-progress text-center jumbotron'>
+                    <StepZilla 
+                                steps={ steps } 
+                                preventEnterSubmission={ true } 
+                                prevBtnOnLastStep={ false } 
+                                showSteps={true}
+                                nextButtonCls='btn btn-outline-danger btn-lg pull-right'
+                                backButtonCls='btn btn-outline-danger btn-lg pull-left' 
+                                nextTextOnFinalActionStep="Send" 
+                                startAtStep={ window.sessionStorage.getItem('step') ? parseFloat(window.sessionStorage.getItem('step')) : 0 } 
+                                onStepChange={ (step) => window.sessionStorage.setItem('step', step) }
+                    />
+                </div>
             </div>
         );
     }

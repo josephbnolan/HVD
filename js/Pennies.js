@@ -1,0 +1,58 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+export default class Pennies extends Component {
+    constructor(props) {
+        super(props);
+        this.thoughts = [
+            {date: 'August 23, 2018', thought: "I love your mind. You are a survivor."},
+            {date: 'August 22, 2018', thought: "I remember the first night I met you, I just stared...thinking you're the most beautiful person I've ever seen."},
+            {date: 'August 21, 2018', thought: "You still fascinate me."},
+            {date: 'August 20, 2018', thought: "I think you are one of the funniest people I know."},
+            {date: 'August 19, 2018', thought: "You have an absolutely perfect nose."},
+            {date: 'August 18, 2018', thought: "Choose me."},
+            {date: 'August 17, 2018', thought: "You are the solid earth beneath my feet."},
+            {date: 'August 16, 2018', thought: "You are wildly sexy."},
+            {date: 'August 15, 2018', thought: "I miss you."},
+            {date: 'August 14, 2018', thought: "Sleeping without you is a chore."},
+            {date: 'August 13, 2018', thought: "You're worth waiting for."},
+        ];
+        this.state = {
+            currentThought: this.thoughts[0].thought,
+        };
+
+        this.changeCurrent = this.changeCurrent.bind(this);
+        this.randomCurrent = this.randomCurrent.bind(this);
+    }
+
+    componentDidMount() {}
+
+    componentWillUnmount() {}
+
+    changeCurrent(index) {
+        this.setState({currentThought: this.thoughts[index].thought});
+    }
+
+    randomCurrent() {
+        this.setState({currentThought: this.thoughts[Math.floor(Math.random() * this.thoughts.length)].thought});
+    }
+
+    render() {
+        return (
+            <div className='pennies__container container'>
+            <Link className="home-button" to='/'></Link>
+                <header className="pennies__header"><i>"What do you even like about me?"</i> <br/> <b>...only everything.</b></header>
+                <div className="thoughts__container">
+                    <h2 className="thoughts__current"><span>{ this.state.currentThought }</span></h2>
+                    <div>
+                        <button className="btn btn-block btn-link mb-2" style={{color: 'cadetblue'}} onClick={this.randomCurrent.bind(this)}>Random</button>
+                        <div className="thoughts__list">
+                            { this.thoughts.map((thought, i) => <span className={thought.thought === this.state.currentThought ? 'thoughts__list--selected' : null} onClick={ this.changeCurrent.bind(this, i) } key={ i }>{ thought.date }</span>) }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
