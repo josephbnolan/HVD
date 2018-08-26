@@ -5,6 +5,8 @@ export default class Pennies extends Component {
     constructor(props) {
         super(props);
         this.thoughts = [
+            {date: 'August 26, 2018', thought: "How much life is in your eyes. "},
+            {date: 'August 25, 2018', thought: "How expressive your face is."},
             {date: 'August 24, 2018', thought: "How strong willed you are. Boss mode Kara is a good look."},
             {date: 'August 23, 2018', thought: "I love your mind. You are a survivor."},
             {date: 'August 22, 2018', thought: "I remember the first night I met you, I just stared...thinking you're the most beautiful person I've ever seen."},
