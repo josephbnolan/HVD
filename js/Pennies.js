@@ -22,7 +22,10 @@ export default class Pennies extends Component {
             {date: 'August 13, 2018', thought: "You're worth waiting for."},
         ];
         this.state = {
-            currentThought: this.thoughts[0].thought,
+            currentThought: `I apologize for putting my feelings for you above your happiness.
+            I've been selfish, thinking only about my expectations.
+            I want what is best for you.
+            Go find it, and fascinate the world around you.`,
         };
 
         this.changeCurrent = this.changeCurrent.bind(this);
