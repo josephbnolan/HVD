@@ -10,8 +10,7 @@ import ChocOrFlow from './components/ChocOrFlow';
 import FinalAnswers from './components/FinalAnswers';
 import Exit from './components/Exit';
 
-
-export default class Questionaire extends Component {
+export default class Questionnaire extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -77,20 +76,23 @@ export default class Questionaire extends Component {
         ]
 
         return (
-            <div className='step-progress text-center'>
-                  <StepZilla 
-                            steps={ steps } 
-                            preventEnterSubmission={ true } 
-                            prevBtnOnLastStep={ false } 
-                            showSteps={true}
-                            nextButtonCls='btn btn-outline-danger btn-lg pull-right'
-                            backButtonCls='btn btn-outline-danger btn-lg pull-left' 
-                            nextTextOnFinalActionStep="Send" 
-                            startAtStep={ window.sessionStorage.getItem('step') ? parseFloat(window.sessionStorage.getItem('step')) : 0 } 
-                            onStepChange={ (step) => window.sessionStorage.setItem('step', step) }
-                  />
+            <div>
+                <canvas id="stage"></canvas>
+                <div className='step-progress text-center jumbotron'>
+                    <StepZilla 
+                                steps={ steps } 
+                                preventEnterSubmission={ true } 
+                                prevBtnOnLastStep={ false } 
+                                showSteps={true}
+                                nextButtonCls='btn btn-outline-danger btn-lg pull-right'
+                                backButtonCls='btn btn-outline-danger btn-lg pull-left' 
+                                nextTextOnFinalActionStep="Send" 
+                                startAtStep={ window.sessionStorage.getItem('step') ? parseFloat(window.sessionStorage.getItem('step')) : 0 } 
+                                onStepChange={ (step) => window.sessionStorage.setItem('step', step) }
+                    />
+                </div>
             </div>
-            );
+        );
     }
 }
 
